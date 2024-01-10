@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Value
 @Builder
-public class FeatureFlagApi {
+public class FeatureApi {
   private final String displayName;
   @NotNull
   private final String technicalName;

@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FeatureFlagService {
+public class FeatureService {
 
   private final FeatureRepository featureRepository;
 
   @Autowired
-  public FeatureFlagService(FeatureRepository featureRepository) {
+  public FeatureService(FeatureRepository featureRepository) {
     this.featureRepository = featureRepository;
   }
 
-  public FeatureEntity createFeature(FeatureFlagApi api) {
+  public FeatureEntity createFeature(FeatureApi api) {
     FeatureEntity newFeature = new FeatureEntity(api.getDisplayName(),
         api.getTechnicalName(),
         api.getExpiresOn(),

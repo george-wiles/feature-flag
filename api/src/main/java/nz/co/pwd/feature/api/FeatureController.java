@@ -20,22 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping("api/v1/feature")
 @RestController
-public class FeatureFlagController {
-  private final static Logger logger = LoggerFactory.getLogger(FeatureFlagController.class);
-  private final FeatureFlagService featureFlagService;
+public class FeatureController {
+  private final static Logger logger = LoggerFactory.getLogger(FeatureController.class);
+  private final FeatureService featureFlagService;
 
   @Autowired
-  FeatureFlagController(FeatureFlagService featureFlagService) {
+  FeatureController(FeatureService featureFlagService) {
     this.featureFlagService = featureFlagService;
   }
 
   @PostMapping()
-  public ResponseEntity<FeatureFlagApi> createFeatureFlag(
-      @RequestBody FeatureFlagApi request) {
+  public ResponseEntity<FeatureApi> createFeatureFlag(
+      @RequestBody FeatureApi request) {
 
     final FeatureEntity featureEntity = featureFlagService.createFeature(request);
-    final FeatureFlagApi response =
-        FeatureFlagApi.builder()
+    final FeatureApi response =
+        FeatureApi.builder()
             .displayName(featureEntity.getDisplayName())
             .technicalName(featureEntity.getTechnicalName())
             .description((featureEntity.getDescription()))
@@ -46,12 +46,12 @@ public class FeatureFlagController {
   }
 
   @GetMapping("list")
-  public ResponseEntity<FeatureFlagApi> getList(
-      @RequestBody FeatureFlagApi request) {
+  public ResponseEntity<FeatureApi> getList(
+      @RequestBody FeatureApi request) {
 
     final FeatureEntity featureEntity = featureFlagService.createFeature(request);
-    final FeatureFlagApi response =
-        FeatureFlagApi.builder()
+    final FeatureApi response =
+        FeatureApi.builder()
             .displayName(featureEntity.getDisplayName())
             .technicalName(featureEntity.getTechnicalName())
             .description((featureEntity.getDescription()))

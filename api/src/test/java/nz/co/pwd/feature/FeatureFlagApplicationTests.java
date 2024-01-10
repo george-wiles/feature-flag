@@ -1,10 +1,9 @@
 package nz.co.pwd.feature;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import nz.co.pwd.feature.api.FeatureFlagApi;
-import nz.co.pwd.feature.api.FeatureFlagController;
+import nz.co.pwd.feature.api.FeatureApi;
+import nz.co.pwd.feature.api.FeatureController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,14 +28,14 @@ class FeatureFlagApplicationTests {
 	private MockMvc mockMvc;
 
 	@Autowired
-	private FeatureFlagController candidate;
+	private FeatureController candidate;
 
 	@Test
 	void When_CreateFeatureFlag_Then_Success() throws Exception {
 		// setup
 		final ZoneId zoneId = ZoneId.systemDefault();
 		final LocalDateTime current = Instant.now().atZone(zoneId).toLocalDateTime();
-		final FeatureFlagApi request = FeatureFlagApi.builder()
+		final FeatureApi request = FeatureApi.builder()
 																 .description("feature-a")
 																 .expiresOn(current.plusMonths(3))
 																 .build();
@@ -58,9 +57,9 @@ class FeatureFlagApplicationTests {
 
 		// verify
 		assertEquals("application/json", mvcResult.getResponse().getContentType());
-		FeatureFlagApi responseApi =
+		FeatureApi responseApi =
 				mapper.readValue(mvcResult.getResponse().getContentAsString(),
-						FeatureFlagApi.class);
+						FeatureApi.class);
 
 		System.out.println(mvcResult.getResponse().getContentAsString());
 	}

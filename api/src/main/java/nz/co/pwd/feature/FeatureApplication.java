@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FeatureFlagApplication {
+public class FeatureApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FeatureFlagApplication.class, args);
+		SpringApplication.run(FeatureApplication.class, args);
 	}
 
 }
