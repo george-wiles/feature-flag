@@ -18,4 +18,13 @@ public class CustomerEntity {
 
   @Column(length = 250)
   private String name;
+
+  public CustomerEntity(String name) {
+    this.name = name;
+  }
+
+  public CustomerEntity() {
+  }
+
+
 }

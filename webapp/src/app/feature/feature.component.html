@@ -1,1 +1,21 @@
-<p>feature works!</p>
+<div class="container-md mt-3">
+  <h2>Feature List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Display Name</th>
+        <th>Technical Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feature of getFeatures()">
+        <td>{{ feature.id }}</td>
+        <td>{{ feature.displayName }}</td>
+        <td>{{ feature.technicalName }}</td>
+        <td>{{ feature.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

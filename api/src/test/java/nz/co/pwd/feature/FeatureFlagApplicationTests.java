@@ -2,10 +2,11 @@ package nz.co.pwd.feature;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import nz.co.pwd.feature.api.FeatureApi;
+import nz.co.pwd.feature.api.model.FeatureApi;
 import nz.co.pwd.feature.api.FeatureController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,47 +22,50 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 class FeatureFlagApplicationTests {
-	private final static String featureBaseUrl = "/api/vi/feature";
+  private final static String featureBaseUrl = "/api/v1/feature";
 
-	@Autowired
-	private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-	@Autowired
-	private FeatureController candidate;
+  @Autowired
+  private FeatureController candidate;
 
-	@Test
-	void When_CreateFeatureFlag_Then_Success() throws Exception {
-		// setup
-		final ZoneId zoneId = ZoneId.systemDefault();
-		final LocalDateTime current = Instant.now().atZone(zoneId).toLocalDateTime();
-		final FeatureApi request = FeatureApi.builder()
-																 .description("feature-a")
-																 .expiresOn(current.plusMonths(3))
-																 .build();
+  @Test
+  void When_CreateFeatureFlag_Then_Success() throws Exception {
+    // setup
 
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectWriter writer = mapper.writer().withDefaultPrettyPrinter();
-		String json = writer.writeValueAsString(request);
-		System.out.println(json);
+		final String[] customers = {"1001", "1002"};
+    final ZoneId zoneId = ZoneId.systemDefault();
+    final LocalDateTime current = Instant.now().atZone(zoneId).toLocalDateTime();
+    final FeatureApi request = FeatureApi.builder()
+                                   .description("feature-a")
+                                   .technicalName("feature.a")
+																	 .customerIds(customers)
+                                   .build();
 
-		// act
-		MvcResult mvcResult =
-				this.mockMvc.perform(
-								post("/api/v1/layout")
-										.contentType(MediaType.APPLICATION_JSON)
-										.content(json))
-						.andDo(print())
-						.andExpect(status().isOk())
-						.andReturn();
+    ObjectMapper mapper = new ObjectMapper();
+    ObjectWriter writer = mapper.writer().withDefaultPrettyPrinter();
+    String json = writer.writeValueAsString(request);
 
-		// verify
-		assertEquals("application/json", mvcResult.getResponse().getContentType());
-		FeatureApi responseApi =
-				mapper.readValue(mvcResult.getResponse().getContentAsString(),
-						FeatureApi.class);
+    // act
+    MvcResult mvcResult =
+        this.mockMvc.perform(
+                post(featureBaseUrl)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(json))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andReturn();
 
-		System.out.println(mvcResult.getResponse().getContentAsString());
-	}
+    // verify
+    assertEquals("application/json", mvcResult.getResponse().getContentType());
+    FeatureApi responseApi =
+        mapper.readValue(mvcResult.getResponse().getContentAsString(),
+            FeatureApi.class);
+    assertEquals("feature-a", responseApi.description());
+    assertEquals("feature.a", responseApi.technicalName());
+  }
 
 }

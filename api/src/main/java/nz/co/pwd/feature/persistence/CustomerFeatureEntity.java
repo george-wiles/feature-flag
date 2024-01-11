@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="CUSTOMER_FEATURE")
@@ -35,5 +35,5 @@ public class CustomerFeatureEntity {
   private boolean isInverted;
 
   @Column(name = "expiration_date")
-  private LocalDate expirationDate;
+  private LocalDateTime expirationDate;
 }

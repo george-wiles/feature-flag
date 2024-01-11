@@ -1,1 +1,17 @@
-<p>customer works!</p>
+<div class="container-md mt-3">
+  <h2>Customer List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of getCustomers()">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

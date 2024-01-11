@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name="FEATURE")
@@ -27,18 +27,17 @@ public class FeatureEntity {
   @Column(length = 250)
   private String technicalName;
 
-  private LocalDateTime expiresOn;
-
   @Column(length = 250)
   private String description;
 
   public FeatureEntity(String displayName,
                        String technicalName,
-                       LocalDateTime expiresOn,
                        String description) {
     this.displayName = displayName;
     this.technicalName = technicalName;
-    this.expiresOn = expiresOn;
     this.description = description;
+  }
+
+  public FeatureEntity() {
   }
 }
