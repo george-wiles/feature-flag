@@ -70,7 +70,7 @@ public class FeatureController {
                          .name(entity.getFeature().getDisplayName())
                          .active(entity.isActive())
                          .inverted(entity.isInverted())
-                         .expired(expiry.isAfter(LocalDateTime.now()))
+                         .expired(expiry.isBefore(LocalDateTime.now()))
                          .build();
             })
             .collect(Collectors.toList());

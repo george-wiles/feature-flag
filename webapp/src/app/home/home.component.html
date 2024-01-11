@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="container-md mt-3">
+  <h2>Feature Flag Admininstration</h2>
+  <h3>Overview</h3>
+  <p>
+    Built and tested with:
+  </p>
+
+    <ul>
+      <li> Oracle OpenJDK version 18 with Spring-boot, Lombok</li>
+      <li>  Oracle OpenJDK version 18 with Spring-boot and lombok</li>
+      <li> Gradle</li>
+      <li>  Does not use spring profiles for dev/production configuration, current configuraiton uses an in memory H2 RDS</li>
+      <li>  Some data is populated by resources/data.sql</li>
+      <li>  Uses some Java constructs requiring JDK <15> i.e. record for immutable data containers</li>
+      <li>  APIS exist to add/query Customer, Feature and CustomerFeature</li>
+      <li> Archiving features has not been implemented due to time constraints.</li>
+    </ul>
+
+
+    <p>
+      Usage:
+    </p>
+
+    <ul>
+      <li>Customner: Lists two customers on initial load </li>
+      <li>Feature: Lists four unique features</li>
+      <li>CustomerFeature: Join Entity/Table that relates features to Customers</li>
+      <ul>
+        <li>Seemed a reasonable initial approach for flexibility</li>
+        <li>User: 1, Feature 4: is expired (expired date in the past)</li>
+        <li>Provides simple form to query a feature configuration for a customer.</li>
+      </ul>
+  
+    </ul>
+
+
+
+

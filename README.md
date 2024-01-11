@@ -1,61 +1,40 @@
 # Overview
 
-![](./images/AircraftRefuellingPuzzle.png)
+![](./Swisscom-Homne-Assignment.pdf)
 
 # General Approach
 
 # 1. App Java based REST API
+
 Location: api
 
 # How to Run
-T
+
 ## Pre-requistes
+
 1. Built and tested with:
-   1.1. Oracle OpenJDK version 18 \
+   1.1. Oracle OpenJDK version 18 with Spring-boot and lombok
    1.2. Gradle
-
-Running test
-
-1. Run `mvn clean install`
-2. This will run the 3 tests described above
-```
-F|E|P|E|F|E|F
-P|E|F|E|P|E|P
-E|E|E|E|E|F|P
-E|F|E|E|E|E|E
-E|P|E|E|E|E|E
-F|E|E|P|E|E|F
-P|E|E|F|E|E|P
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.421 s - in nz.org.wiles.klm.puzzle.service.impl.AirportLayoutServiceImpTest
-[INFO] 
-[INFO] Results:
-[INFO] 
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
-[INFO] 
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-```
+   1.3. Does not use spring profiles for dev/production configuration, current configuraiton uses an in memory H2 RDS
+   1.4. Some data is populated by resources/data.sql
+   1.5. Uses some Java constructs requiring JDK <15> i.e. record for immutable data containers
+   1.6. APIS exist to add/query Customer, Feature and CustomerFeature
+   1.7. Archiving features has not been implemented due to time constraints.
 
 # Java springboot
+
 This initial revision is written in Java with Spring-boot.
 
-
 # 2. WebApp Angular consumes app REST API
+
 Location: webapp
 
 To run locally assumes:
-* Angular cli installed
-    * `cd webapp`
-        * `npm install`
-        * `npm run start`
-* Java spring-boot
-    * `cd app`
-    * `mvn clean install`
-    * `mvn sprint-boot:run`
 
-
-
-
-
-
+- Angular cli installed
+  - `cd webapp`
+    - `npm install`
+    - `npm run start`
+- Java spring-boot
+  - `cd app`
+  - `./gradlew bootRun` 
