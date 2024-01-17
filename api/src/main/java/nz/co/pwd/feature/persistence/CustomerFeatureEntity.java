@@ -36,4 +36,19 @@ public class CustomerFeatureEntity {
 
   @Column(name = "expiration_date")
   private LocalDateTime expirationDate;
+
+  public CustomerFeatureEntity(CustomerEntity customer,
+                               FeatureEntity feature,
+                               boolean isActive,
+                               boolean isInverted,
+                               LocalDateTime expirationDate) {
+    this.customer = customer;
+    this.feature = feature;
+    this.isActive = isActive;
+    this.isInverted = isInverted;
+    this.expirationDate = expirationDate;
+  }
+
+  public CustomerFeatureEntity() {
+  }
 }

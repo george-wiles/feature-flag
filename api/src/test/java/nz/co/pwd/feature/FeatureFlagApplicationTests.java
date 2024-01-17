@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import nz.co.pwd.feature.api.model.FeatureApi;
 import nz.co.pwd.feature.api.FeatureController;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,10 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -23,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+//@Disabled("there is a conflict between db-schema.sql auto population and H2 creation")
 class FeatureFlagApplicationTests {
   private final static String featureBaseUrl = "/api/v1/feature";
 
@@ -35,14 +33,10 @@ class FeatureFlagApplicationTests {
   @Test
   void When_CreateFeatureFlag_Then_Success() throws Exception {
     // setup
-
-		final String[] customers = {"1001", "1002"};
-    final ZoneId zoneId = ZoneId.systemDefault();
-    final LocalDateTime current = Instant.now().atZone(zoneId).toLocalDateTime();
     final FeatureApi request = FeatureApi.builder()
+                                   .displayName("feature a")
                                    .description("feature-a")
                                    .technicalName("feature.a")
-																	 .customerIds(customers)
                                    .build();
 
     ObjectMapper mapper = new ObjectMapper();

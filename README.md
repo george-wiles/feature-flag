@@ -38,3 +38,51 @@ To run locally assumes:
 - Java spring-boot
   - `cd app`
   - `./gradlew bootRun` 
+
+
+Future revisions
+
+#1 Archiving: Soft delete archiving of customer_feature
+
+```
+
+@Entity
+@Table(name = "ARCHIVED_CUSTOMER_FEATURE")
+public class ArchivedCustomerFeature implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "NAME", length = 250)
+    private String name;
+
+    @Column(name = "FEATURE_ID")
+    private Long featureId;
+
+    @Column(name = "CUSTOMER_ID")
+    private Long customerId;
+
+    @Column(name = "IS_ACTIVE")
+    private boolean isActive;
+
+    @Column(name = "IS_INVERTED")
+    private boolean isInverted;
+
+    @Column(name = "EXPIRATION_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expirationDate;
+}
+
+```
+
+introduced an archived flag in CustomerFeature
+
+## issues: db partitioning for archived data
+
+#2 Archiving: warehousing of customer_feature data via archive
+
+## Move feature to archive to warehouse db and remove from application database
+
+# issues: if business want to view / restore archived data 
+may not be best solution as it would then couple the feature service with warehouses etc.

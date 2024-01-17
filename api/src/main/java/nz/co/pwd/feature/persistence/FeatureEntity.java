@@ -10,7 +10,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
-
 @Entity
 @Table(name="FEATURE")
 @Data

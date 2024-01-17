@@ -2,8 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Customer } from '../model/customer.model';
-import { CustomerFeature, CustomerFeatureRequest, CustomerFeatureResponse, Feature } from '../model/feature.model';
+import { AddCustomer, Customer } from '../model/customer.model';
+import { AddFeature, CustomerFeature, CustomerFeatureRequest, CustomerFeatureResponse, Feature } from '../model/feature.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +18,9 @@ export class DataService {
     return this.http.get<Customer[]>(url);
   }
 
-  createCustomer(data: any): Observable<any> {
+  createCustomer(data: AddCustomer): Observable<Customer> {
     const url = `${this.baseUrl}/customer`;
-    return this.http.post(url, data);
+    return this.http.post<Customer>(url, data);
   }
 
   getFeatures(): Observable<Feature[]> {
@@ -33,8 +33,8 @@ export class DataService {
     return this.http.post<CustomerFeatureResponse>(url, data);
   }
 
-  createFeature(data: any): Observable<any> {
+  createFeature(data: AddFeature): Observable<Feature> {
     const url = `${this.baseUrl}/feature`;
-    return this.http.post(url, data);
+    return this.http.post<Feature>(url, data);
   }
 }

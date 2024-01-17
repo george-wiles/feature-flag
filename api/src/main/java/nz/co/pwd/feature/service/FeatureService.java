@@ -51,7 +51,6 @@ public class FeatureService {
                .findByCustomerIdAndFeatureDisplayNameIn(
                    request.customerId(), names);
     logger.info("JPA findByCustomerIdAndFeatureDisplayNameIn returns " + features);
-
     return features;
   }
 }

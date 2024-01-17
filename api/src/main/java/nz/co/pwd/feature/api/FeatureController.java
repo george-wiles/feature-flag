@@ -31,7 +31,6 @@ import java.util.stream.Collectors;
 @RequestMapping("api/v1")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-
 public class FeatureController {
   private final static Logger logger = LoggerFactory.getLogger(FeatureController.class);
   private final FeatureService featureService;
@@ -47,6 +46,7 @@ public class FeatureController {
     final FeatureEntity featureEntity = featureService.createFeature(request);
     final FeatureApi response =
         FeatureApi.builder()
+            .id(featureEntity.getId())
             .displayName(featureEntity.getDisplayName())
             .technicalName(featureEntity.getTechnicalName())
             .description(featureEntity.getDescription())

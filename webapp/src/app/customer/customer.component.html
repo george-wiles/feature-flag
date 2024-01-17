@@ -1,5 +1,5 @@
 <div class="container-md mt-3">
-  <h2>Customer List</h2>
+  <h4>Customers</h4>
   <table class="table">
     <thead>
       <tr>
@@ -14,4 +14,18 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<div class="form-inline">
+  <form class="row" [formGroup]="customerForm">
+    <div class="col-10 form-group">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3">Name</span>
+        <input formControlName="name" id="name" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="col-2 d-grid gap-2 d-md-flex " style="height: 2.5em">
+      <button class="btn btn-primary form-button" type="button"  (click)="addCustomer()">Add</button>
+    </div>
+  </form>
 </div>

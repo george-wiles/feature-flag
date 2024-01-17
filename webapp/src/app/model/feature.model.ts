@@ -5,6 +5,12 @@ export interface Feature {
   description: string;
 }
 
+export interface AddFeature {
+  displayName: string;
+  technicalName: string;
+  description: string;
+}
+
 export interface CustomerFeature {
   name: string;
   active: boolean;

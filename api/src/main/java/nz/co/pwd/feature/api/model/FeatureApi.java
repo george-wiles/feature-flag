@@ -15,21 +15,16 @@ import java.time.LocalDateTime;
 public record FeatureApi(Long id,
                          String displayName,
                          @NotNull String technicalName,
-                         LocalDateTime expiresOn, String description,
-                         @NotNull String[] customerIds) {
+                         String description) {
   @JsonCreator
   public FeatureApi(
       @JsonProperty("id") Long id,
       @JsonProperty("displayName") String displayName,
       @JsonProperty("technicalName") String technicalName,
-      @JsonProperty("expiresOn") LocalDateTime expiresOn,
-      @JsonProperty("description") String description,
-      @JsonProperty("customerIds") String[] customerIds) {
+      @JsonProperty("description") String description) {
     this.id = id;
     this.displayName = displayName;
     this.technicalName = technicalName;
-    this.expiresOn = expiresOn;
     this.description = description;
-    this.customerIds = customerIds;
   }
 }

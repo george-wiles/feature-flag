@@ -59,7 +59,6 @@ export class CustomerFeatureComponent {
       this.dataService.getCustomerFeatures(req).subscribe({
         next: (data:
           CustomerFeatureResponse) => {
-          console.log('data is ', data);
           this.customerFeatures = data.features;
         }
       })
