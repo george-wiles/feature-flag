@@ -9,4 +9,6 @@ public interface CustomerFeatureRepository
 
   List<CustomerFeatureEntity> findByCustomerIdAndFeatureDisplayNameIn(Long customerId, List<String> names);
 
+  CustomerFeatureEntity findByFeatureIdAndCustomerId(Long featureId, Long customerId);
+
 }
