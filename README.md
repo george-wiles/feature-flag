@@ -42,7 +42,9 @@ To run locally assumes:
 
 Future revisions
 
-#1 Archiving: Soft delete archiving of customer_feature
+#1 Archiving
+
+Option 1. Soft delete archiving of customer_feature
 
 ```
 
@@ -76,13 +78,4 @@ public class ArchivedCustomerFeature implements Serializable {
 
 ```
 
-introduced an archived flag in CustomerFeature
-
-## issues: db partitioning for archived data
-
-#2 Archiving: warehousing of customer_feature data via archive
-
-## Move feature to archive to warehouse db and remove from application database
-
-# issues: if business want to view / restore archived data 
-may not be best solution as it would then couple the feature service with warehouses etc.
+introduce an archived flag in CustomerFeature
